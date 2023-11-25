@@ -12,6 +12,6 @@ class Exhibitions extends Model
     protected $fillable = ['name', 'image'];
 
     public function projects() {
-        return $this->hasMany(Project::class);
+        return $this->hasMany(Projects::class);
     }
 }
