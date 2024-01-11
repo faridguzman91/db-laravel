@@ -11,6 +11,7 @@ class ExhibitionsController extends Controller
      */
     public function index()
     {
+        return 'exhibitions';
         //
     }
 
