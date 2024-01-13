@@ -21,6 +21,9 @@ class ExhibitionsController extends Controller
      */
     public function create()
     {
+    return Inertia::render('Exhibitions/Create');
+
+
         //
     }
 
