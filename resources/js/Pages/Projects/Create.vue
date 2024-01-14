@@ -7,7 +7,24 @@
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <p>Form</p>
+                <form @submit.prevent="submit">
+                    <div>
+                        <InputLabel for="name" value="name" />
+                        <TextInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus />
+                        <InputError class="mt-2" :message="form.errors.name" />
+                    </div>
+                    <div>
+                        <InputLabel for="image" value="image" />
+                        <TextInput id="image" type="file" class="mt-1 block w-full" v-model="form.image" @input="form.image = $event.target.files[0]" />
+                        <InputError class="mt-2" :message="form.errors.image" />
+                    </div>
+
+                    <div class="flex items-center justify-end mt-4">
+                        <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                            Log in
+                        </PrimaryButton>
+                    </div>
+                </form>
             </div>
         </div>
     </AuthenticatedLayout>
@@ -15,5 +32,22 @@
 
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, useForm } from '@inertiajs/vue3';
+import InputError from '../../Components/InputError.vue';
+import InputLabel from '../../Components/InputLabel.vue';
+import TextInput from '../../Components/TextInput.vue';
+import PrimaryButton from '../../Components/PrimaryButton.vue';
+
+const form = useForm({
+    email: '',
+    password: '',
+    remember: false,
+});
+
+const submit = () => {
+    form.post(route('login'), {
+        onFinish: () => form.reset('password'),
+    });
+};
+
 </script>
