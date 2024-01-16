@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('exhibitions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('exhibition_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('project_id')->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('image');
-            $table->string('project_url')->nullable();
+            $table->string('exhibition_url')->nullable();
             $table->timestamps();
         });
     }
