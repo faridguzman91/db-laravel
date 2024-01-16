@@ -9,9 +9,10 @@ class Exhibitions extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'image'];
+    protected $fillable = ['project_id', 'name', 'image', 'project_url'];
 
-    public function projects() {
+    public function projects()
+    {
         return $this->hasMany(Projects::class);
     }
 }

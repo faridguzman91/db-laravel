@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
+use App\Models\Projects;
 
 class ProjectsController extends Controller
 {
@@ -28,7 +30,23 @@ class ProjectsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate the image and name
+        $request->validate([
+            'image' => ['required', 'image'],
+            'name' => ['required', 'min:3']
+        ]);
+
+        // store image when image is true
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->store('projects');
+
+            Projects::create([
+                'name' => $request->name,
+                'image' => $image
+            ]);
+            return Redirect::route('projects.index');
+        }
+        return Redirect::back();
     }
 
     /**
