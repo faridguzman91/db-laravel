@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProjectResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -14,7 +15,8 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Projects/Index');         //
+        $projects = ProjectResource::collection(Project::all());
+        return Inertia::render('Projects/Index' , compact('projects'));
     }
 
     /**
