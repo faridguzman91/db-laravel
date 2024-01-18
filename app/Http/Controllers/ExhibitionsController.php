@@ -43,7 +43,7 @@ class ExhibitionsController extends Controller
 
         // store image when image is true
         if ($request->hasFile('image')) {
-            $image = $request->file('image')->store('projects');
+            $image = $request->file('image')->store('exhibitions');
 
             Exhibition::create([
                 'project_id' => $request->project_id,
