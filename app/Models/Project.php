@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Projects extends Model
+class Project extends Model
 {
     use HasFactory;
 
     protected $fillable = ['name', 'image'];
 
-    public function exhibitions() {
-        return $this->belongsTo(Exhibitions::class);
+    public function exhibitions()
+    {
+        return $this->hasMany(Exhibition::class);
     }
 }

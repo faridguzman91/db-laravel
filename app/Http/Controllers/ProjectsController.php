@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
-use App\Models\Projects;
+use App\Models\Project;
 
 class ProjectsController extends Controller
 {
@@ -40,7 +40,7 @@ class ProjectsController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image')->store('projects');
 
-            Projects::create([
+            Project::create([
                 'name' => $request->name,
                 'image' => $image
             ]);

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\Exhibition;
+use App\Models\Project;
 
 class ExhibitionsController extends Controller
 {
@@ -21,10 +24,8 @@ class ExhibitionsController extends Controller
      */
     public function create()
     {
-    return Inertia::render('Exhibitions/Create');
-
-
-        //
+        $projects = Project::all();
+        return Inertia::render('Exhibitions/Create', compact('projects'));
     }
 
     /**
@@ -32,7 +33,27 @@ class ExhibitionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request);
+        //validate the image and name and project id
+        $request->validate([
+            'image' => ['required', 'image'],
+            'name' => ['required', 'min:3'],
+            'project_id' => ['required']
+        ]);
+
+        // store image when image is true
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->store('projects');
+
+            Exhibition::create([
+                'project_id' => $request->project_id,
+                'name' => $request->name,
+                'image' => $image,
+                'project_url' => $request->project_url
+            ]);
+            return Redirect::route('exhibitions.index');
+        }
+        return Redirect::back();
     }
 
     /**
