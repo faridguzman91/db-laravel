@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ExhibitionResource;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -16,7 +17,8 @@ class ExhibitionsController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Exhibitions/Index');
+        $exhibitions = ExhibitionResource::collection(Exhibition::with('project')->get());
+        return Inertia::render('Exhibitions/Index' , compact('exhibitions'));
         //
     }
 
