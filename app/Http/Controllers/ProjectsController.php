@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use App\Models\Project;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectsController extends Controller
 {
@@ -16,7 +17,7 @@ class ProjectsController extends Controller
     public function index()
     {
         $projects = ProjectResource::collection(Project::all());
-        return Inertia::render('Projects/Index' , compact('projects'));
+        return Inertia::render('Projects/Index', compact('projects'));
     }
 
     /**
@@ -62,24 +63,42 @@ class ProjectsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Project $project)
     {
-        //
+        return Inertia::render('Projects/Edit', compact('project'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Project $project)
     {
-        //
+        $image = $project->image;
+        $request->validate([
+            'name' => ['required', 'min:3']
+        ]);
+        if ($request->hasFile('image')) {
+            //delete image then reassign
+            Storage::delete($project->image);
+            $image = $request->file('image')->store('projects');
+        }
+
+        $project->update([
+            'name' => $request->name,
+            'image' => $image
+        ]);
+
+        return Redirect::route('projects.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Project $project)
     {
-        //
+        Storage::delete($project->image);
+        $project->delete();
+
+        return Redirect::back();
     }
 }
