@@ -47,7 +47,7 @@ class ProjectsController extends Controller
                 'name' => $request->name,
                 'image' => $image
             ]);
-            return Redirect::route('projects.index');
+            return to_route('projects.index');
         }
         return Redirect::back();
     }
@@ -88,7 +88,7 @@ class ProjectsController extends Controller
             'image' => $image
         ]);
 
-        return Redirect::route('projects.index');
+        return to_route('projects.index');
     }
 
     /**

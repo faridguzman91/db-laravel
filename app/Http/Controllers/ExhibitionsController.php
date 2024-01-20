@@ -54,7 +54,7 @@ class ExhibitionsController extends Controller
                 'image' => $image,
                 'project_url' => $request->project_url
             ]);
-            return Redirect::route('exhibitions.index');
+            return to_route('exhibitions.index');
         }
         return Redirect::back();
     }
@@ -99,7 +99,7 @@ class ExhibitionsController extends Controller
             'image' => $image
         ]);
 
-        return Redirect::route('exhibitions.index');
+        return to_route('exhibitions.index');
     }
 
     /**
