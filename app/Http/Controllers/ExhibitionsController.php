@@ -18,7 +18,7 @@ class ExhibitionsController extends Controller
     public function index()
     {
         $exhibitions = ExhibitionResource::collection(Exhibition::with('project')->get());
-        return Inertia::render('Exhibitions/Index' , compact('exhibitions'));
+        return Inertia::render('Exhibitions/Index', compact('exhibitions'));
         //
     }
 
@@ -70,24 +70,46 @@ class ExhibitionsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Exhibition $exhibition)
     {
-        //
+        $projects = Project::all();
+        return Inertia::render('Exhibitions/Edit', compact('exhibition', 'projects'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Exhibition $exhibition)
     {
-        //
+        $image = $exhibition->image;
+        $request->validate([
+            'name' => ['required', 'min:3'],
+            'project_id' => ['required']
+        ]);
+
+        if ($request->hasFile('image')) {
+            Storage::delete($exhibition->image);
+            $image = $request->file('image')->store('projects');
+        }
+
+        $exhibition->update([
+            'name' => $request->name,
+            'project_id' => $request->project_id,
+            'project_url' => $request->project_url,
+            'image' => $image
+        ]);
+
+        return Redirect::route('exhibitions.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Exhibition $exhibition)
     {
-        //
+        Storage::Delete($exhibition->image);
+        $exhibition->delete();
+
+        Redirect::back();
     }
 }
