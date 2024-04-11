@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-                        <PrimaryButton class="ms-4">
+                        <PrimaryButton type="submit" class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                             Update
                         </PrimaryButton>
                     </div>

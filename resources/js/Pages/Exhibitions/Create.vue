@@ -16,6 +16,7 @@
                                 {{ project.name }}
                             </option>
                         </select>
+                        <InputError class="mt-2" :message="form.errors.exhibition_id" />
                     </div>
                     <div class="mt-4">
                         <InputLabel for="name" value="name" />
@@ -26,7 +27,7 @@
                         <InputLabel for="project_url" value="URL" />
                         <TextInput id="project_url" type="text" class="mt-1 block w-full" v-model="form.project_url"
                             required autofocus />
-                        <InputError class="mt-2" :message="form.errors.name" />
+                        <InputError class="mt-2" :message="form.errors.project_url" />
                     </div>
 
                     <div class="mt-4">
@@ -37,7 +38,7 @@
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
-                        <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                        <PrimaryButton type="submit" class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                             Store
                         </PrimaryButton>
                     </div>

@@ -54,7 +54,7 @@ class ExhibitionsController extends Controller
                 'image' => $image,
                 'project_url' => $request->project_url
             ]);
-            return to_route('exhibitions.index');
+            return to_route('exhibitions.index')->with('message', 'Exhibition created succesfully');
         }
         return Redirect::back();
     }
@@ -98,8 +98,7 @@ class ExhibitionsController extends Controller
             'project_url' => $request->project_url,
             'image' => $image
         ]);
-
-        return to_route('exhibitions.index');
+        return to_route('exhibitions.index')->with('message', 'Exhibition updated succesfully');
     }
 
     /**
@@ -109,7 +108,6 @@ class ExhibitionsController extends Controller
     {
         Storage::Delete($exhibition->image);
         $exhibition->delete();
-
-        Redirect::back();
+        return to_route('exhibitions.index')->with('message', 'Exhibition deleted succesfully');
     }
 }

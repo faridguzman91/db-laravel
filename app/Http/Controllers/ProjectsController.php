@@ -47,7 +47,7 @@ class ProjectsController extends Controller
                 'name' => $request->name,
                 'image' => $image
             ]);
-            return to_route('projects.index');
+        return to_route('exhibitions.index')->with('message', 'Project created succesfully');
         }
         return Redirect::back();
     }
@@ -87,8 +87,7 @@ class ProjectsController extends Controller
             'name' => $request->name,
             'image' => $image
         ]);
-
-        return to_route('projects.index');
+        return to_route('exhibitions.index')->with('message', 'Project updated succesfully');
     }
 
     /**
@@ -99,6 +98,7 @@ class ProjectsController extends Controller
         Storage::delete($project->image);
         $project->delete();
 
-        return Redirect::back();
+        return to_route('exhibitions.index')->with('message', 'Project deleted succesfully');
+
     }
 }
