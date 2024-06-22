@@ -23,6 +23,7 @@
     "dependencies": {
         "@inertiajs/vue3": "^1.0.14",
         "@tailwindcss/typography": "^0.5.10",
-        "theme-change": "^2.5.0"
+        "theme-change": "^2.5.0",
+        "vue3-canvas-video-player": "^1.2.3"
     }
 }

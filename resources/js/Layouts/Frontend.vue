@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import Header from "../FrontendComponents/Header.vue";
 import Footer from "../FrontendComponents/Footer.vue";
-import {onMounted, ref } from 'vue'
-import {themeChange} from 'theme-change'
+import { onMounted, ref } from "vue";
+import { themeChange } from "theme-change";
 
 onMounted(() => {
-  themeChange(false)
-})
-
+    themeChange(false);
+});
 </script>
 
 <template>
