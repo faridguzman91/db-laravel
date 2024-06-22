@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="hidden h-full flex-1 items-end justify-end lg:flex">
-                    <img src="" alt="" />
+                    <img src="../../../public/img/david-compressed-jpg/bade.jpg" alt="" />
                 </div>
             </div>
         </div>
