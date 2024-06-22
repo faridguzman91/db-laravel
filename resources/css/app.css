@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+<<<<<<< HEAD
 @layer base {
     body {
          @apply font-body text-paragraph leading-6 bg-gray-200;
@@ -29,4 +30,15 @@
 @apply py-4 px-7 font-medium text-slate-700 dark:text-white flex items-center justify-center rounded-sm hover:text-white
     }
 
+=======
+:root {
+  --my-color: #fff;
+  /* or any other variables/style */
+}
+[data-theme='dark'] {
+  --my-color: #000;
+}
+[data-theme='pink'] {
+  --my-color: #ffabc8;
+>>>>>>> 32033aa0d00f4e544f2f50538c220f64f71a15ab
 }
