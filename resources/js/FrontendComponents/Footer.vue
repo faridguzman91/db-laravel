@@ -7,7 +7,7 @@
                 <div class="flex items-center justify-center space-x-6"></div>
             </div>
             <p class="text-paragraph text-[15px] opacity-80">
-                &copy; David Bade. All righgt reserved
+                &copy; David Bade 2024. All rights reserved.
             </p>
         </div>
     </footer>
