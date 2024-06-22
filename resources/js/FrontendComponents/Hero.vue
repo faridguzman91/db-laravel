@@ -15,7 +15,7 @@
                         David Bade
                     </h1>
                     <div
-                        class="m-auto mb-6 mt-6 flex w-full flex-row items-center justify-start border border-x-0 border-gray-500 font-mono"
+                        class="m-auto flex w-full flex-row items-center justify-start border border-x-0 border-gray-500 font-mono"
                     >
                         <button
                             class="hover:bg-light-secondary hover:text-light-tail-500 btn btn-md mb-6 mt-6 bg-accent transition-all md:btn-lg"
@@ -40,8 +40,56 @@
                         </button>
                     </div>
                 </div>
-                <div class="hidden h-full flex-1 items-end justify-end lg:flex">
-                    <img src="../../../public/img/david-compressed-jpg/bade.jpg" alt="" />
+                <div class="w-1/2 carousel rounded-box">
+                    <div class="carousel-item">
+                        <img
+                            src="../../../public/img/david-compressed-jpg/aaien-met-de-tong-.jpg"
+                            style="width: 300px; background-position: fill"
+                            alt="Burger"
+                        />
+                    </div>
+                    <div class="carousel-item">
+                        <img
+                            src="../../../public/img/david-compressed-jpg/IMG_9810.jpg"
+                            style="width: 300px; background-position: center"
+                            alt="Burger"
+                        />
+                    </div>
+                    <div class="carousel-item">
+                        <img
+                            src="../../../public/img/david-compressed-jpg/drawing-01.jpg"
+                            style="width: 300px; background-position: center"
+                            alt="Burger"
+                        />
+                    </div>
+                    <div class="carousel-item">
+                        <img
+                            src="../../../public/img/david-compressed-jpg/drawing-02.jpg"
+                            style="width: 300px; background-position: center"
+                            alt="Burger"
+                        />
+                    </div>
+                    <div class="carousel-item">
+                        <img
+                            src="../../../public/img/david-compressed-jpg/drawing-03.jpg"
+                            style="width: 300px; background-position: center"
+                            alt="Burger"
+                        />
+                    </div>
+                    <div class="carousel-item">
+                        <img
+                            src="../../../public/img/david-compressed-jpg/drawing-04.jpg"
+                            style="width: 300px; background-position: center"
+                            alt="Burger"
+                        />
+                    </div>
+                    <div class="carousel-item">
+                        <img
+                            src="../../../public/img/david-compressed-jpg/drawing-05.jpg"
+                            style="width: 300px; background-position: center"
+                            alt="Burger"
+                        />
+                    </div>
                 </div>
             </div>
         </div>
