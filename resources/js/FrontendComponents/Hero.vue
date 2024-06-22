@@ -12,12 +12,23 @@
                     <h1
                         class="text-4xl font-bold leading-[44px] md:text-5xl md:leading-tight md:tracking-[-2px]"
                     >
-                    <p class="pt-4 pb-8 md:pt-6 md:pb-12 max-w-[480px] text-lg text-center lg:text-left">
-Lorem ipsm
-                    </p>
-                        <button class="btn btn-md bg-accent hover:bg-light-secondary md:btn-lg transition-all">button</button>
+                        <p
+                            class="max-w-[480px] pb-8 pt-4 text-center text-lg md:pb-12 md:pt-6 lg:text-left"
+                        >
+                            Lorem ipsm
+                        </p>
+
                         Beeldend Kunstenaar
                     </h1>
+ <button
+                            class="hover:bg-light-secondary btn btn-md bg-accent transition-all md:btn-lg mt-6"
+                        >
+                            button
+                        </button>
+
+                </div>
+                <div class="hidden lg:flex flex-1 justify-end items-end h-full">
+                    <img src="" alt="" />
                 </div>
             </div>
         </div>

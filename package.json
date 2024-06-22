@@ -22,6 +22,7 @@
     },
     "dependencies": {
         "@inertiajs/vue3": "^1.0.14",
-        "@tailwindcss/typography": "^0.5.10"
+        "@tailwindcss/typography": "^0.5.10",
+        "theme-change": "^2.5.0"
     }
 }
