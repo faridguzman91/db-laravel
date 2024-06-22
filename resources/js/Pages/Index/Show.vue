@@ -1,5 +1,3 @@
 <template>
-    <div>
-        Show
-    </div>
+    <div>Show</div>
 </template>
