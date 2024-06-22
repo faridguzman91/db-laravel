@@ -10,38 +10,37 @@
                         Contemporary Artist
                     </p>
                     <h1
-                        class="text-4xl font-bold font-mono leading-[44px] md:text-5xl md:leading-tight md:tracking-[-2px]"
+                        class="font-mono text-4xl font-bold leading-[44px] md:text-5xl md:leading-tight md:tracking-[-2px]"
                     >
                         David Bade
                     </h1>
-                        <div class="flex font-mono flex-row w-full justify-start items-center border border-x-0 m-auto">
- <button
-                            class="hover:bg-light-secondary hover:text-light-tail-500 btn btn-md bg-accent transition-all md:btn-lg mt-6"
+                    <div
+                        class="m-auto mb-6 mt-6 flex w-full flex-row items-center justify-start border border-x-0 border-gray-500 font-mono"
+                    >
+                        <button
+                            class="hover:bg-light-secondary hover:text-light-tail-500 btn btn-md mb-6 mt-6 bg-accent transition-all md:btn-lg"
                         >
                             paintings
                         </button>
-<button
-                            class="hover:bg-light-secondary hover:text-light-tail-500 btn btn-md bg-accent transition-all md:btn-lg mt-6"
+                        <button
+                            class="hover:bg-light-secondary hover:text-light-tail-500 btn btn-md mb-6 mt-6 bg-accent transition-all md:btn-lg"
                         >
                             sculpture
                         </button>
-<button
-                            class="hover:bg-light-secondary hover:text-light-tail-500 btn btn-md bg-accent transition-all md:btn-lg mt-6"
+                        <button
+                            class="hover:bg-light-secondary hover:text-light-tail-500 btn btn-md mb-6 mt-6 bg-accent transition-all md:btn-lg"
                         >
                             exhibitions
                         </button>
 
-<button
-                            class="hover:bg-light-secondary hover:text-light-tail-500 btn btn-md bg-accent transition-all md:btn-lg mt-6"
+                        <button
+                            class="hover:bg-light-secondary hover:text-light-tail-500 btn btn-md mb-6 mt-6 bg-accent transition-all md:btn-lg"
                         >
                             projects
                         </button>
-
-
-     </div>
-
+                    </div>
                 </div>
-                <div class="hidden lg:flex flex-1 justify-end items-end h-full">
+                <div class="hidden h-full flex-1 items-end justify-end lg:flex">
                     <img src="" alt="" />
                 </div>
             </div>
