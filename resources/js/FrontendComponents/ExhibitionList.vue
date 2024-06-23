@@ -25,7 +25,7 @@
                 </p>
             </a>
         </div>
-        <section class="flex flex-col w-full">
+        <section class="flex w-full flex-col">
             <Exhibition
                 v-for="exhibition in filteredExhibitions"
                 :key="exhibition.id"
@@ -34,7 +34,6 @@
         </section>
     </div>
 </template>
-
 
 <script setup>
 import Exhibition from "../FrontendComponents/Exhibition.vue";
@@ -46,14 +45,16 @@ const props = defineProps({
 });
 
 const filteredExhibitions = ref(props.exhibitions.data);
-const activeTab = ref('all'); // Initialize with 'all' since it's initially active
+const activeTab = ref("all"); // Initialize with 'all' since it's initially active
 
 const filterExhibitions = (id) => {
     activeTab.value = id; // Update the active tab
     if (id === "all") {
         filteredExhibitions.value = props.exhibitions.data;
     } else {
-        filteredExhibitions.value = props.exhibitions.data.filter(project => project.id === id);
+        filteredExhibitions.value = props.exhibitions.data.filter(
+            (project) => project.id === id,
+        );
     }
 };
 </script>

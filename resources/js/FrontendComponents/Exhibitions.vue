@@ -5,7 +5,7 @@
     >
         <div class="container mx-auto">
             <div class="flex flex-col items-center text-center">
-                <h2 class="text-4xl mb-4">exhibitions</h2>
+                <h2 class="mb-4 text-4xl">exhibitions</h2>
             </div>
             <ExhibitionList :projects="projects" :exhibitions="exhibitions" />
         </div>
