@@ -10,7 +10,7 @@
                 :class="{ 'tab-active': activeTab === 'all' }"
                 @click="filterExhibitions('all')"
             >
-                <p class="text-xl">all</p>
+                <p class="text-xl">All</p>
             </a>
             <a
                 role="tab"
