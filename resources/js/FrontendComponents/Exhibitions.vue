@@ -1,28 +1,22 @@
 <template lang="">
-    <section id="exhibitions" class="p-28 mb-4 mt-4 font-mono section bg-light-primary dark:bg-dark-primary min-h-[1400px]">
+    <section
+        id="exhibitions"
+        class="section bg-light-primary dark:bg-dark-primary mb-4 mt-4 min-h-[1400px] p-28 font-mono"
+    >
         <div class="container mx-auto">
             <div class="flex flex-col items-center text-center">
-                <h2 class="text-4xl">
-exhibitions
-                </h2>
-                <p>
-my latest shows
-
-                </p>
+                <h2 class="text-4xl mb-4">exhibitions</h2>
             </div>
             <ExhibitionList :projects="projects" :exhibitions="exhibitions" />
         </div>
-
     </section>
 </template>
 
 <script setup>
-import ExhibitionList from "../FrontendComponents/ExhibitionList.vue"
+import ExhibitionList from "../FrontendComponents/ExhibitionList.vue";
 
 defineProps({
-exhibitions: Object,
-projects: Object
+    exhibitions: Object,
+    projects: Object,
 });
-
-
 </script>
