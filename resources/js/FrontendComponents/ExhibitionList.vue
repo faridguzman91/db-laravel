@@ -1,15 +1,21 @@
-<template lang="">
+<template>
     <div class="container mx-auto">
         <div
             role="tablist"
             class="border-light-tail-100 tabs tabs-lifted mb-12 border-b-2"
         >
-            <a role="tab" class="tab" @click="filterExhibitions('all')">
+            <a
+                role="tab"
+                class="tab"
+                :class="{ 'tab-active': activeTab === 'all' }"
+                @click="filterExhibitions('all')"
+            >
                 <p class="text-xl">all</p>
             </a>
             <a
                 role="tab"
-                class="tab tab-active"
+                class="tab"
+                :class="{ 'tab-active': activeTab === projectExhibition.id }"
                 v-for="projectExhibition in exhibitions.data"
                 :key="projectExhibition.id"
                 @click="filterExhibitions(projectExhibition.id)"
@@ -19,7 +25,7 @@
                 </p>
             </a>
         </div>
-        <section class="grid gap-y-12 lg:grid-cols-3 lg:gap-8">
+        <section class="flex flex-col w-full">
             <Exhibition
                 v-for="exhibition in filteredExhibitions"
                 :key="exhibition.id"
@@ -29,26 +35,25 @@
     </div>
 </template>
 
+
 <script setup>
 import Exhibition from "../FrontendComponents/Exhibition.vue";
 import { ref } from "vue";
-
 
 const props = defineProps({
     exhibitions: Object,
     projects: Object,
 });
 
-const filteredExhibitions = ref(props.exhibitions.data)
+const filteredExhibitions = ref(props.exhibitions.data);
+const activeTab = ref('all'); // Initialize with 'all' since it's initially active
 
 const filterExhibitions = (id) => {
+    activeTab.value = id; // Update the active tab
     if (id === "all") {
-        filteredExhibitions.value = props.exhibitions.data
+        filteredExhibitions.value = props.exhibitions.data;
     } else {
-        filteredExhibitions.value = props.exhibitions.data.filter(project => {
-            console.log(project.id);
-            return project.id === id;
-        })
+        filteredExhibitions.value = props.exhibitions.data.filter(project => project.id === id);
     }
-}
+};
 </script>
