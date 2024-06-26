@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ExhibitionsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectsController;
@@ -20,6 +21,7 @@ use Inertia\Inertia;
 */
 
 Route::get('/', [WelcomeController::class, 'welcome'])->name('welcome');
+Route::get('/blogs', [BlogController::class, 'blogs'])->name('blogs');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
@@ -28,6 +30,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::resource('/projects' , ProjectsController::class);
     Route::resource('/exhibitions' , ExhibitionsController::class);
+    Route::resource('/blogs', BlogController::class);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
