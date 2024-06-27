@@ -9,7 +9,7 @@ class Exhibition extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['project_id', 'name', 'image', 'project_url'];
+    protected $fillable = ['project_id', 'name', 'description', 'year', 'image', 'project_url'];
 
     public function project()
     {
