@@ -35,19 +35,29 @@ class ProjectsController extends Controller
     {
         //validate the image and name
         $request->validate([
-            'image' => ['required', 'image'],
-            'name' => ['required', 'min:3']
+            'images.*' => ['required', 'image'],
+            'name' => ['required', 'min:3'],
+            'description' => ['required', 'string'],
+            'year' => ['required', 'integer', 'min:1900', 'max:' . (date('Y') + 1)],
+            'project_url' => ['required', 'url']
         ]);
 
-        // store image when image is true
-        if ($request->hasFile('image')) {
-            $image = $request->file('image')->store('projects');
+        // store images when image is true
+        $images = [];
+
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $images[] = $image->store('projects');
+            };
 
             Project::create([
                 'name' => $request->name,
-                'image' => $image
+                'images' => $images,
+                'description' => $request->description,
+                'year' => $request->year,
+                'project_url' => $request->project_url
             ]);
-        return to_route('exhibitions.index')->with('message', 'Project created succesfully');
+            return to_route('exhibitions.index')->with('message', 'Project created succesfully');
         }
         return Redirect::back();
     }
@@ -73,21 +83,32 @@ class ProjectsController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-        $image = $project->image;
         $request->validate([
-            'name' => ['required', 'min:3']
+            'name' => ['required', 'min:3'],
+            'description' => ['required', 'string'],
+            'year' => ['required', 'integer', 'min:1900', 'max:' . (date('Y') + 1)],
+            'project_url' => ['required', 'url'],
+            'images.*' => ['image']
         ]);
-        if ($request->hasFile('image')) {
+
+
+        $images = $project->images ?? [];
+        if ($request->hasFile('images')) {
             //delete image then reassign
-            Storage::delete($project->image);
-            $image = $request->file('image')->store('projects');
+            foreach ($request->file('images') as $image) {
+                Storage::delete($project->images);
+                $images[] = $image->store('projects');
+            }
         }
 
         $project->update([
             'name' => $request->name,
-            'image' => $image
+            'description' => $request->description,
+            'year' => $request->year,
+            'images' => $images,
+            'project_url' => $request->project_url
         ]);
-        return to_route('exhibitions.index')->with('message', 'Project updated succesfully');
+        return to_route('projects.index')->with('message', 'Project updated succesfully');
     }
 
     /**
@@ -95,10 +116,13 @@ class ProjectsController extends Controller
      */
     public function destroy(Project $project)
     {
-        Storage::delete($project->image);
+        if ($project->images) {
+            foreach ($project->images as $image) {
+                Storage::delete($image);
+            }
+        }
         $project->delete();
 
-        return to_route('exhibitions.index')->with('message', 'Project deleted succesfully');
-
+        return to_route('projects.index')->with('message', 'Project deleted succesfully');
     }
 }

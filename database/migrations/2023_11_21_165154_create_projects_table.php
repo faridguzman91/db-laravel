@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->year('year');
             $table->string('name');
-            $table->string('image');
+            $table->json('images')->nullable();
             $table->string('project_url')->nullable();
             $table->timestamps();
         });

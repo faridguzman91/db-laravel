@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('year');
+            $table->year('year');
             $table->string('category');
-            $table->string('description');
-            $table->string('materials');
-            $table->string('image');
+            $table->text('description');
+            $table->text('materials');
+            $table->json('images')->nullable();
             $table->timestamps();
         });
     }

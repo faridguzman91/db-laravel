@@ -9,7 +9,11 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'image'];
+    protected $fillable = ['name', 'description', 'year', 'images', 'project_url'];
+
+    protected $casts = [
+        'images' => 'array'
+    ];
 
     public function exhibitions()
     {
