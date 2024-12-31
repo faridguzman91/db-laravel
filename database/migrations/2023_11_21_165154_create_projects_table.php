@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('exhibitions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('project_id')->constrained()->cascadeOnDelete();
+            $table->text('description');
+            $table->year('year');
             $table->string('name');
-            $table->string('image');
+            $table->json('images')->nullable();
             $table->string('project_url')->nullable();
             $table->timestamps();
         });

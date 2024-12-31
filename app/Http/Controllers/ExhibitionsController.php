@@ -41,7 +41,9 @@ class ExhibitionsController extends Controller
         $request->validate([
             'image' => ['required', 'image'],
             'name' => ['required', 'min:3'],
-            'project_id' => ['required']
+            'project_id' => ['required'],
+            'description' => ['required', 'string'],
+            'year' => ['required', 'integer', 'min:1900', 'max:' . (date('Y') + 1)],
         ]);
 
         // store image when image is true
@@ -51,6 +53,8 @@ class ExhibitionsController extends Controller
             Exhibition::create([
                 'project_id' => $request->project_id,
                 'name' => $request->name,
+                'description' => $request->description,
+                'year' => $request->year,
                 'image' => $image,
                 'project_url' => $request->project_url
             ]);
@@ -84,7 +88,9 @@ class ExhibitionsController extends Controller
         $image = $exhibition->image;
         $request->validate([
             'name' => ['required', 'min:3'],
-            'project_id' => ['required']
+            'project_id' => ['required'],
+            'description' => ['required', 'string'],
+            'year' => ['required', 'integer', 'min:1900', 'max:' . (date('Y') +1)]
         ]);
 
         if ($request->hasFile('image')) {
@@ -94,6 +100,8 @@ class ExhibitionsController extends Controller
 
         $exhibition->update([
             'name' => $request->name,
+            'description' => $request->description,
+            'year' => $request->year,
             'project_id' => $request->project_id,
             'project_url' => $request->project_url,
             'image' => $image
