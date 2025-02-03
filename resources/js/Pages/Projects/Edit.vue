@@ -117,8 +117,8 @@
                         <InputError class="mt-2" :message="form.errors.image" />
                     </div>
 
-                    <!-- Submit Button -->
-                    <div class="mt-4 flex items-center justify-end">
+                    <!-- Submit Button and Cancel Button -->
+                    <div class="mt-4 flex items-center justify-end space-x-4">
                         <PrimaryButton
                             type="submit"
                             class="ms-4"
@@ -127,6 +127,15 @@
                         >
                             Update
                         </PrimaryButton>
+
+                        <!-- Cancel Button -->
+                        <button
+                            type="button"
+                            class="text-gray-600 hover:text-gray-900"
+                            @click="cancelEdit"
+                        >
+                            Cancel
+                        </button>
                     </div>
                 </form>
             </div>
@@ -180,5 +189,11 @@ const submit = () => {
 
     router.post(`/projects/${props.project.id}`, data);
 };
+
+// Cancel Edit: Redirects back to the projects index page
+const cancelEdit = () => {
+    router.visit(route('projects.index')); // Navigates to the projects index page
+};
 </script>
+
 

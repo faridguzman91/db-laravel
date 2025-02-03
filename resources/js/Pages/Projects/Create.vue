@@ -119,7 +119,7 @@
                     </div>
 
                     <!-- Submit Button -->
-                    <div class="mt-4 flex items-center justify-end">
+                    <div class="mt-4 mr-4 flex items-center justify-end">
                         <PrimaryButton
                             type="submit"
                             class="ms-4"
@@ -128,6 +128,15 @@
                         >
                             Store
                         </PrimaryButton>
+                            <!-- Cancel Button -->
+                        <button
+                            type="button"
+                            class="text-gray-600 ml-4 hover:text-gray-900"
+                            @click="cancelEdit"
+                        >
+                            Cancel
+                        </button>
+
                     </div>
                 </form>
             </div>
@@ -142,6 +151,7 @@ import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import TextInput from "@/Components/TextInput.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
+import { router } from "@inertiajs/vue3";
 
 const form = useForm({
     name: "",
@@ -172,5 +182,10 @@ const submit = () => {
         forceFormData: true,
     });
 };
+
+const cancelEdit = () => {
+    router.visit(route('projects.index')); // Navigates to the projects index page
+};
+
 </script>
 
