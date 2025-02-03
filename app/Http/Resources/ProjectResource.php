@@ -15,9 +15,13 @@ class ProjectResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-        'id' => $this->id,
-        'name' => $this->name,
-        'image' => asset('/storage/'. $this->image)
+            'id' => $this->id,
+            'name' => $this->name,
+            'image' => asset('storage/' . $this->image),  // Make sure image is prefixed correctly for the frontend
+            'description' => $this->description,
+            'year' => $this->year,
+            'project_url' => $this->project_url,
         ];
     }
 }
+

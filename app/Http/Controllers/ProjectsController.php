@@ -16,8 +16,8 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $projects = ProjectResource::collection(Project::all());
-        return Inertia::render('Projects/Index', compact('projects'));
+        $projects = ProjectResource::collection(Project::all());  // Use the resource collection here
+        return Inertia::render('Projects/Index', ['projects' => $projects]);
     }
 
     /**
@@ -35,7 +35,7 @@ class ProjectsController extends Controller
     {
         //validate the image and name
         $request->validate([
-            'images.*' => ['required', 'image'],
+            'image' => ['required', 'image'],
             'name' => ['required', 'min:3'],
             'description' => ['required', 'string'],
             'year' => ['required', 'integer', 'min:1900', 'max:' . (date('Y') + 1)],
@@ -43,16 +43,13 @@ class ProjectsController extends Controller
         ]);
 
         // store images when image is true
-        $images = [];
 
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $images[] = $image->store('projects');
-            };
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('projects');
 
             Project::create([
                 'name' => $request->name,
-                'images' => $images,
+                'image' => $imagePath,
                 'description' => $request->description,
                 'year' => $request->year,
                 'project_url' => $request->project_url

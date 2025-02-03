@@ -1,5 +1,5 @@
 <template>
-    <head title="New project" />
+    <Head title="New project" />
     <AuthenticatedLayout>
         <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
@@ -10,8 +10,9 @@
         <div class="py-12">
             <div class="mx-auto max-w-md bg-white sm:px-6 lg:px-8">
                 <form class="p-4" @submit.prevent="submit">
+                    <!-- Name -->
                     <div class="mt-4">
-                        <InputLabel for="name" value="name" />
+                        <InputLabel for="name" value="Name" />
                         <TextInput
                             id="name"
                             type="text"
@@ -22,18 +23,60 @@
                         />
                         <InputError class="mt-2" :message="form.errors.name" />
                     </div>
+
+                    <!-- Description -->
+                    <div class="mt-4">
+                        <InputLabel for="description" value="Description" />
+                        <textarea
+                            id="description"
+                            class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+                            v-model="form.description"
+                            required
+                        ></textarea>
+                        <InputError class="mt-2" :message="form.errors.description" />
+                    </div>
+
+                    <!-- Year -->
+                    <div class="mt-4">
+                        <InputLabel for="year" value="Year" />
+                        <TextInput
+                            id="year"
+                            type="number"
+                            class="mt-1 block w-full"
+                            v-model="form.year"
+                            required
+                            min="1900"
+                            :max="new Date().getFullYear() + 1"
+                        />
+                        <InputError class="mt-2" :message="form.errors.year" />
+                    </div>
+
+                    <!-- Project URL -->
+                    <div class="mt-4">
+                        <InputLabel for="project_url" value="Project URL" />
+                        <TextInput
+                            id="project_url"
+                            type="url"
+                            class="mt-1 block w-full"
+                            v-model="form.project_url"
+                            required
+                        />
+                        <InputError class="mt-2" :message="form.errors.project_url" />
+                    </div>
+
+                    <!-- Image Upload -->
                     <div class="mt-2">
-                        <InputLabel for="image" value="image" />
+                        <InputLabel for="image" value="Image" />
                         <TextInput
                             id="image"
                             type="file"
                             class="mt-1 block w-full"
-                            v-model="form.image"
-                            @input="form.image = $event.target.files[0]"
+                            @change="handleImageUpload"
                         />
                         <InputError class="mt-2" :message="form.errors.image" />
                     </div>
 
+                    <!-- Submit Button -->
                     <div class="mt-4 flex items-center justify-end">
                         <PrimaryButton
                             type="submit"
@@ -53,17 +96,27 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, useForm } from "@inertiajs/vue3";
-import InputError from "../../Components/InputError.vue";
-import InputLabel from "../../Components/InputLabel.vue";
-import TextInput from "../../Components/TextInput.vue";
-import PrimaryButton from "../../Components/PrimaryButton.vue";
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import TextInput from "@/Components/TextInput.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 const form = useForm({
     name: "",
+    description: "",
+    year: "",
+    project_url: "",
     image: null,
 });
 
+const handleImageUpload = (event) => {
+    form.image = event.target.files[0];
+};
+
 const submit = () => {
-    form.post(route("projects.store"));
+    form.post(route("projects.store"), {
+        forceFormData: true,
+    });
 };
 </script>
+
