@@ -18,6 +18,8 @@ return new class extends Migration
             $table->text('description');
             $table->string('project_url')->nullable();
             $table->string('image')->nullable();
+            $table->string('category');
+            $table->json('materials')->nullable();
             $table->timestamps();
         });
     }

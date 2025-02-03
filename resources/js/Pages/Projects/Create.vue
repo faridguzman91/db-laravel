@@ -64,6 +64,48 @@
                         <InputError class="mt-2" :message="form.errors.project_url" />
                     </div>
 
+                    <!-- Category -->
+                    <div class="mt-4">
+                        <InputLabel for="category" value="Category" />
+                        <TextInput
+                            id="category"
+                            type="text"
+                            class="mt-1 block w-full"
+                            v-model="form.category"
+                            required
+                        />
+                        <InputError class="mt-2" :message="form.errors.category" />
+                    </div>
+
+                    <!-- Materials (Array of strings) -->
+                    <div class="mt-4">
+                        <InputLabel for="materials" value="Materials" />
+                        <div v-for="(material, index) in form.materials" :key="index" class="flex items-center mb-2">
+                            <TextInput
+                                :id="'material-' + index"
+                                type="text"
+                                class="mt-1 block w-full"
+                                v-model="form.materials[index]"
+                                required
+                            />
+                            <button
+                                type="button"
+                                class="ml-2 text-red-500"
+                                @click="removeMaterial(index)"
+                            >
+                                Remove
+                            </button>
+                        </div>
+                        <button
+                            type="button"
+                            class="mt-2 text-blue-500"
+                            @click="addMaterial"
+                        >
+                            Add Material
+                        </button>
+                        <InputError class="mt-2" :message="form.errors.materials" />
+                    </div>
+
                     <!-- Image Upload -->
                     <div class="mt-2">
                         <InputLabel for="image" value="Image" />
@@ -106,8 +148,20 @@ const form = useForm({
     description: "",
     year: "",
     project_url: "",
+    category: "",  // Category field
+    materials: [""], // Initialize as an array with one empty string
     image: null,
 });
+
+// Handle adding a new material input field
+const addMaterial = () => {
+    form.materials.push(""); // Add an empty string to the materials array
+};
+
+// Handle removing a material input field
+const removeMaterial = (index) => {
+    form.materials.splice(index, 1); // Remove the material at the given index
+};
 
 const handleImageUpload = (event) => {
     form.image = event.target.files[0];

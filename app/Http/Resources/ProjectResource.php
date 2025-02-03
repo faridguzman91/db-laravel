@@ -17,11 +17,12 @@ class ProjectResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'image' => asset('storage/' . $this->image),  // Make sure image is prefixed correctly for the frontend
             'description' => $this->description,
             'year' => $this->year,
+            'category' => $this->category,
+            'materials' => $this->materials, // This is already cast to an array
+            'image' => asset('/storage/' . $this->image),
             'project_url' => $this->project_url,
         ];
     }
 }
-

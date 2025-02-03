@@ -39,6 +39,8 @@ class ProjectsController extends Controller
             'name' => ['required', 'min:3'],
             'description' => ['required', 'string'],
             'year' => ['required', 'integer', 'min:1900', 'max:' . (date('Y') + 1)],
+            'category' => ['required', 'string'],
+            'materials' => ['required', 'array'],
             'project_url' => ['required', 'url']
         ]);
 
@@ -52,9 +54,11 @@ class ProjectsController extends Controller
                 'image' => $imagePath,
                 'description' => $request->description,
                 'year' => $request->year,
+                'category' => $request->category,
+                'materials' => $request->materials,
                 'project_url' => $request->project_url
             ]);
-            return to_route('exhibitions.index')->with('message', 'Project created succesfully');
+            return to_route('projects.index')->with('message', 'Project created succesfully');
         }
         return Redirect::back();
     }
