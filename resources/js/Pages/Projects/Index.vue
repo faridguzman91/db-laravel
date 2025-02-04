@@ -22,8 +22,10 @@
                                     Project ID
                                 </th>
                                 <th scope="col" class="px-6 py-3">Name</th>
+                                <th scope="col" class="px-6 py-3">Category</th>
+                                <th scope="col" class="px-6 py-3">Materials</th>
                                 <th scope="col" class="px-6 py-3">Image</th>
-                                <th scope="col" class="px-6 py-3">action</th>
+                                <th scope="col" class="px-6 py-3">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
